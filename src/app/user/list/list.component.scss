@@ -6,3 +6,17 @@
         margin: 0;
     }
 }
+
+.table {
+    tr {
+        td {
+            vertical-align: baseline;
+            .btn {
+                margin: 0;
+                &:first-of-type {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
