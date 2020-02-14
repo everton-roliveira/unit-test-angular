@@ -1,1 +1,45 @@
-<p>form works!</p>
+<form class="clr-form">
+    <div class="clr-form-control clr-row">
+        <label for="example" class="clr-control-label">Nome</label>
+        <div class="clr-control-container clr-col-sm-12 clr-col-md-5">
+            <div class="clr-input-wrapper">
+                <input type="text" id="input-name" class="clr-input">
+                <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="clr-subtext">campo obrigatório</span>
+        </div>
+    </div>
+
+    <div class="clr-form-control clr-row">
+        <label for="example" class="clr-control-label">Email</label>
+        <div class="clr-control-container clr-col-sm-12 clr-col-md-5">
+            <div class="clr-input-wrapper">
+                <input type="text" id="input-email" class="clr-input">
+                <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="clr-subtext">campo obrigatório</span>
+        </div>
+    </div>
+
+    <div class="clr-form-control clr-row">
+        <clr-radio-container clrInline>
+            <label class="clr-control-label">Genêro</label>
+            <clr-radio-wrapper>
+                <input type="radio" clrRadio name="gender" required value="feminine" />
+                <label>Feminino</label>
+            </clr-radio-wrapper>
+            <clr-radio-wrapper>
+                <input type="radio" clrRadio name="gender" required value="male" />
+                <label>Masculino</label>
+            </clr-radio-wrapper>
+            <clr-control-error>campo obrigatório</clr-control-error>
+        </clr-radio-container>
+    </div>
+
+    <div class="clr-form-control clr-row">
+        <clr-toggle-wrapper>
+            <input type="checkbox" clrToggle value="option1" name="status" />
+            <label>Status</label>
+        </clr-toggle-wrapper>
+    </div>
+</form>

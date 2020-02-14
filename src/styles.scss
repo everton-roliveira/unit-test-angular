@@ -1,0 +1,8 @@
+.header-page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__title {
+        margin: 0;
+    }
+}
