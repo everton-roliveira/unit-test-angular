@@ -50,7 +50,7 @@ fdescribe('FormComponent', () => {
     expect(component.form).toBeTruthy();
   });
 
-  fit('should create formGroup with all fields', () => {
+  it('should create formGroup with all fields', () => {
     let user = new User();
     user = {
       name:  null,
@@ -59,5 +59,9 @@ fdescribe('FormComponent', () => {
       status: true
     };
     expect(component.form.value).toEqual(user);
+  });
+
+  fit('should form invalid when empty', () => {
+    expect(component.form.invalid).toBeTruthy();
   });
 });

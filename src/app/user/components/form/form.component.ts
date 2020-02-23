@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 
 @Component({
@@ -21,7 +21,9 @@ export class FormComponent implements OnInit {
 
   createForm(user: User) {
     this.form = this._fb.group({
-      'name': [user.name],
+      'name': [user.name, [
+        Validators.required]
+      ],
       'email': [user.email],
       'gender': [user.gender],
       'status': [user.status]
