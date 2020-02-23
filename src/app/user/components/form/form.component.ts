@@ -19,7 +19,10 @@ export class FormComponent implements OnInit {
 
   createForm() {
     this.form = this._fb.group({
-      'name': [],
+      'name': [''],
+      'email': [''],
+      'gender': ['FEMININE'],
+      'status': [true]
     });
   }
 

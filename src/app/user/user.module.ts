@@ -6,6 +6,7 @@ import { ClarityModule } from '@clr/angular';
 import { FormComponent } from './components/form/form.component';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     ListComponent,
@@ -16,7 +17,9 @@ import { CreateComponent } from './create/create.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    ClarityModule
+    ClarityModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class UserModule { }

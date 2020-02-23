@@ -12,6 +12,12 @@ const CLARITY_MODULES = [
   ClrCheckboxModule
 ]
 
+// imports do reactive forms
+const FORM_GROUP = [
+  ReactiveFormsModule,
+  FormsModule
+]
+
 // fdescribe -> usado para fixar o run de teste em um unico describe
 fdescribe('FormComponent', () => {
   let component: FormComponent;
@@ -23,8 +29,7 @@ fdescribe('FormComponent', () => {
       imports: [
         // adicionado o array de imports do framework
         CLARITY_MODULES,
-        ReactiveFormsModule,
-        FormsModule
+        FORM_GROUP
       ]
     })
       .compileComponents();
@@ -40,7 +45,25 @@ fdescribe('FormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should create formGroup', () => {
+  it('should create formGroup', () => {
     expect(component.form).toBeTruthy();
+  });
+
+  fit('should create formGroup with all fields', () => {
+    class User {
+      name: string;
+      email: string;
+      gender: 'FEMININE' | 'MALE';
+      status: boolean;
+    }
+
+    let user = new User();
+    user = {
+      name: '',
+      email: '',
+      gender: 'FEMININE',
+      status: true
+    };
+    expect(component.form.value).toEqual(user);
   });
 });
