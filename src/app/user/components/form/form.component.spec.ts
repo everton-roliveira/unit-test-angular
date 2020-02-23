@@ -4,6 +4,7 @@ import { FormComponent } from './form.component';
 import { ClrRadioModule, ClrIconModule, ClrInputModule, ClrCheckboxModule } from '@clr/angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
+import { GenderEnum } from 'src/app/shared/enum/gender.enum';
 
 const CLARITY_MODULES = [
   ClrRadioModule,
@@ -51,7 +52,7 @@ fdescribe('FormComponent', () => {
     user = {
       name:  null,
       email: null,
-      gender: 'FEMININE',
+      gender: GenderEnum.FEMININE,
       status: true
     };
     expect(component.form.value).toEqual(user);
@@ -79,7 +80,7 @@ fdescribe('FormComponent', () => {
     expect(name.valid).toBeTruthy();
   });
 
-  // NOVO TESTE
+  // NOVOS TESTES
   it('should validate email field', () => {
     let email = component.form.controls['email'];
     expect(email.valid).toBeFalsy();
@@ -96,6 +97,22 @@ fdescribe('FormComponent', () => {
     errors = email.errors || {};
     expect(errors['pattern']).toBeFalsy();
     expect(email.valid).toBeTruthy();
+  });
+
+  fit('should validate gender field', () => {
+    let gender = component.form.controls['gender'];
+    gender.setValue(null);
+    let errors = gender.errors || {};
+    expect(errors['required']).toBeTruthy();
+
+    gender.setValue('any_value');
+    errors = gender.errors || {};
+    expect(errors['gender']).toBeTruthy();
+
+    gender.setValue(GenderEnum.FEMININE);
+    errors = gender.errors || {};
+    expect(errors['gender']).toBeFalsy();
+    expect(gender.valid).toBeTruthy();
   });
 
 });

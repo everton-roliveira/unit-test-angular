@@ -1,13 +1,15 @@
+import { GenderEnum} from '../enum/gender.enum';
+
 export class User {
     name: string;
     email: string;
-    gender: 'FEMININE' | 'MALE';
+    gender: GenderEnum;
     status: boolean;
 
     constructor() {
         this.name = null;
         this.email = null;
-        this.gender = 'FEMININE';
+        this.gender = GenderEnum.FEMININE;
         this.status = true;
     }
 }

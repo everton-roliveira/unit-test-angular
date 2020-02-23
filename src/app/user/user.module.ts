@@ -19,7 +19,7 @@ import { UserRoutingModule } from './user-routing.module';
     UserRoutingModule,
     ClarityModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class UserModule { }
