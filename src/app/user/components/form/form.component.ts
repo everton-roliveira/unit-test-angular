@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-form',
@@ -9,20 +10,21 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class FormComponent implements OnInit {
 
   form: FormGroup;
+  user: User = new User();
   constructor(
     private _fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.createForm();
+    this.createForm(this.user);
   }
 
-  createForm() {
+  createForm(user: User) {
     this.form = this._fb.group({
-      'name': [''],
-      'email': [''],
-      'gender': ['FEMININE'],
-      'status': [true]
+      'name': [user.name],
+      'email': [user.email],
+      'gender': [user.gender],
+      'status': [user.status]
     });
   }
 

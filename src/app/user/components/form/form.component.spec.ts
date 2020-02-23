@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormComponent } from './form.component';
 import { ClrRadioModule, ClrIconModule, ClrInputModule, ClrCheckboxModule } from '@clr/angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { User } from 'src/app/shared/models/user';
 
 // imports do framework clarity
 const CLARITY_MODULES = [
@@ -50,17 +51,10 @@ fdescribe('FormComponent', () => {
   });
 
   fit('should create formGroup with all fields', () => {
-    class User {
-      name: string;
-      email: string;
-      gender: 'FEMININE' | 'MALE';
-      status: boolean;
-    }
-
     let user = new User();
     user = {
-      name: '',
-      email: '',
+      name:  null,
+      email: null,
       gender: 'FEMININE',
       status: true
     };
