@@ -69,5 +69,11 @@ fdescribe('FormComponent', () => {
     let name = component.form.controls['name'];
     let errors = name.errors || {};
     expect(errors['required']).toBeTruthy();
+
+    name.setValue('ER');
+    errors = name.errors || {};
+    
+    expect(errors['required']).toBeFalsy();
+    expect(errors['minlength']).toBeTruthy();
   });
 });
