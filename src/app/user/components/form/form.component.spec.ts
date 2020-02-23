@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormComponent } from './form.component';
 import { ClrRadioModule, ClrIconModule, ClrInputModule, ClrCheckboxModule } from '@clr/angular';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // imports do framework clarity
 const CLARITY_MODULES = [
@@ -21,7 +22,9 @@ fdescribe('FormComponent', () => {
       declarations: [FormComponent],
       imports: [
         // adicionado o array de imports do framework
-        CLARITY_MODULES
+        CLARITY_MODULES,
+        ReactiveFormsModule,
+        FormsModule
       ]
     })
       .compileComponents();
@@ -35,5 +38,9 @@ fdescribe('FormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  fit('should create formGroup', () => {
+    expect(component.form).toBeTruthy();
   });
 });
