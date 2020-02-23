@@ -80,7 +80,6 @@ fdescribe('FormComponent', () => {
     expect(name.valid).toBeTruthy();
   });
 
-  // NOVOS TESTES
   it('should validate email field', () => {
     let email = component.form.controls['email'];
     expect(email.valid).toBeFalsy();
@@ -99,7 +98,7 @@ fdescribe('FormComponent', () => {
     expect(email.valid).toBeTruthy();
   });
 
-  fit('should validate gender field', () => {
+  it('should validate gender field', () => {
     let gender = component.form.controls['gender'];
     gender.setValue(null);
     let errors = gender.errors || {};

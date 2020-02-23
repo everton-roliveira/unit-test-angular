@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 import { genderValidator } from '../../../shared/directives/gender.directive';
 
-// parttern para email
 const EMAIL_PARTTERN = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 
 @Component({
@@ -29,7 +28,6 @@ export class FormComponent implements OnInit {
         Validators.required,
         Validators.minLength(3)]
       ],
-      // adicionado Validators em email
       'email': [user.email, [
         Validators.required,
         Validators.pattern(EMAIL_PARTTERN)]
