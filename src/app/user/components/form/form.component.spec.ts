@@ -65,15 +65,22 @@ fdescribe('FormComponent', () => {
     expect(component.form.invalid).toBeTruthy();
   });
 
-  fit('should name field must be required', () => {
+  it('should validate name field', () => {
     let name = component.form.controls['name'];
+    expect(name.valid).toBeFalsy();
+
     let errors = name.errors || {};
     expect(errors['required']).toBeTruthy();
 
     name.setValue('ER');
     errors = name.errors || {};
-    
     expect(errors['required']).toBeFalsy();
     expect(errors['minlength']).toBeTruthy();
+
+    name.setValue('Name teste');
+    errors = name.errors || {};
+    expect(errors['minlength']).toBeFalsy();
+    expect(name.valid).toBeTruthy();
   });
+
 });
