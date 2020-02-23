@@ -114,4 +114,24 @@ fdescribe('FormComponent', () => {
     expect(gender.valid).toBeTruthy();
   });
 
+  // NOVOS TESTE
+  it('should create the form with the value passed by input', () => {
+    let user = new User();
+    user = {
+      name: 'Name test',
+      email: 'any_email@email.com',
+      gender: GenderEnum.FEMININE,
+      status: true
+    }
+    component.user = user;
+    component.ngOnInit();
+    expect(component.form.value).toEqual(user);
+    expect(component.form.valid).toBeTruthy();
+
+    user.email = 'invalid_email';
+    component.user = user;
+    component.ngOnInit();
+    expect(component.form.invalid).toBeTruthy();
+  });
+
 });
