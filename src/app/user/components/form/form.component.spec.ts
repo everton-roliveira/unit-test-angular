@@ -61,7 +61,13 @@ fdescribe('FormComponent', () => {
     expect(component.form.value).toEqual(user);
   });
 
-  fit('should form invalid when empty', () => {
+  it('should form invalid when empty', () => {
     expect(component.form.invalid).toBeTruthy();
+  });
+
+  fit('should name field must be required', () => {
+    let name = component.form.controls['name'];
+    let errors = name.errors || {};
+    expect(errors['required']).toBeTruthy();
   });
 });
