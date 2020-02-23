@@ -5,7 +5,6 @@ import { ClrRadioModule, ClrIconModule, ClrInputModule, ClrCheckboxModule } from
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 
-// imports do framework clarity
 const CLARITY_MODULES = [
   ClrRadioModule,
   ClrIconModule,
@@ -13,13 +12,11 @@ const CLARITY_MODULES = [
   ClrCheckboxModule
 ]
 
-// imports do reactive forms
 const FORM_GROUP = [
   ReactiveFormsModule,
   FormsModule
 ]
 
-// fdescribe -> usado para fixar o run de teste em um unico describe
 fdescribe('FormComponent', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
@@ -28,7 +25,6 @@ fdescribe('FormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [FormComponent],
       imports: [
-        // adicionado o array de imports do framework
         CLARITY_MODULES,
         FORM_GROUP
       ]
@@ -83,6 +79,7 @@ fdescribe('FormComponent', () => {
     expect(name.valid).toBeTruthy();
   });
 
+  // NOVO TESTE
   it('should validate email field', () => {
     let email = component.form.controls['email'];
     expect(email.valid).toBeFalsy();
