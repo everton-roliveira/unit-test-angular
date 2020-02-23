@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 import { genderValidator } from '../../../shared/directives/gender.directive';
@@ -12,7 +12,6 @@ const EMAIL_PARTTERN = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 })
 export class FormComponent implements OnInit {
 
-  // Agora user é uma propriedade de entrada (decorator @Input)
   @Input() user: User = new User();
   form: FormGroup;
   
@@ -24,7 +23,6 @@ export class FormComponent implements OnInit {
     this.createForm(this.user);
   }
 
-  // refatorando o método
   private createForm(user: User) {
     this.form = this._fb.group({
       'name': [user.name, [
@@ -42,5 +40,4 @@ export class FormComponent implements OnInit {
       'status': [user.status]
     });
   }
-
 }

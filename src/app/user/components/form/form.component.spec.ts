@@ -50,7 +50,7 @@ fdescribe('FormComponent', () => {
   it('should create formGroup with all fields', () => {
     let user = new User();
     user = {
-      name:  null,
+      name: null,
       email: null,
       gender: GenderEnum.FEMININE,
       status: true
@@ -83,7 +83,7 @@ fdescribe('FormComponent', () => {
   it('should validate email field', () => {
     let email = component.form.controls['email'];
     expect(email.valid).toBeFalsy();
-    
+
     let errors = email.errors || {};
     expect(errors['required']).toBeTruthy()
 
@@ -114,7 +114,6 @@ fdescribe('FormComponent', () => {
     expect(gender.valid).toBeTruthy();
   });
 
-  // NOVOS TESTE
   it('should create the form with the value passed by input', () => {
     let user = new User();
     user = {
@@ -134,4 +133,18 @@ fdescribe('FormComponent', () => {
     expect(component.form.invalid).toBeTruthy();
   });
 
+  // it('should called the validateForm() method, when the form is invalid, it must return null.', () => {
+  //   component.user = {
+  //     name: 'Name test',
+  //     email: 'email_invalid',
+  //     gender: GenderEnum.FEMININE,
+  //     status: true
+  //   }
+  //   component.ngOnInit();
+  //   component.validateForm();
+  //   component.emitForm.subscribe((value: User) => {
+  //     console.log('TESTE: ', value);
+  //     expect(value).toEqual(new User());
+  //   });
+  // });
 });
