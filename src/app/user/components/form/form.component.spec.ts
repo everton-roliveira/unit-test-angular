@@ -83,4 +83,22 @@ fdescribe('FormComponent', () => {
     expect(name.valid).toBeTruthy();
   });
 
+  it('should validate email field', () => {
+    let email = component.form.controls['email'];
+    expect(email.valid).toBeFalsy();
+    
+    let errors = email.errors || {};
+    expect(errors['required']).toBeTruthy()
+
+    email.setValue('email_invalid');
+    errors = email.errors || {};
+    expect(errors['required']).toBeFalsy();
+    expect(errors['pattern']).toBeTruthy();
+
+    email.setValue('email@email.com');
+    errors = email.errors || {};
+    expect(errors['pattern']).toBeFalsy();
+    expect(email.valid).toBeTruthy();
+  });
+
 });
