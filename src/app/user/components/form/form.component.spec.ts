@@ -132,19 +132,4 @@ fdescribe('FormComponent', () => {
     component.ngOnInit();
     expect(component.form.invalid).toBeTruthy();
   });
-
-  // it('should called the validateForm() method, when the form is invalid, it must return null.', () => {
-  //   component.user = {
-  //     name: 'Name test',
-  //     email: 'email_invalid',
-  //     gender: GenderEnum.FEMININE,
-  //     status: true
-  //   }
-  //   component.ngOnInit();
-  //   component.validateForm();
-  //   component.emitForm.subscribe((value: User) => {
-  //     console.log('TESTE: ', value);
-  //     expect(value).toEqual(new User());
-  //   });
-  // });
 });
