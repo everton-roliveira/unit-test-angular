@@ -30,7 +30,12 @@ export class FormComponent implements OnInit {
   }
 
   validateForm() {
-    this.emitForm.emit(this.form.valid ? this.form.value : null);
+    if (this.form.valid) {
+      // caminho feliz
+    } else {
+      this.markFormGroupTouched(this.form);
+      this.emitForm.emit(null);
+    }
   }
 
   private createForm(user: User) {
@@ -48,6 +53,17 @@ export class FormComponent implements OnInit {
         genderValidator]
       ],
       'status': [user.status]
+    });
+  }
+
+    // Método que marca como tocado todos os campos do formGroup
+  // com isso se algum estiver inválido, o html coloca uma classe de error (clr-error)
+  private markFormGroupTouched(formGroup: FormGroup) {
+    (<any>Object).values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+      if (control.controls) {
+        control.controls.forEach(c => this.markFormGroupTouched(c));
+      }
     });
   }
 }

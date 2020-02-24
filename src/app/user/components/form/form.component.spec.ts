@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 
 import { FormComponent } from './form.component';
 import { ClrRadioModule, ClrIconModule, ClrInputModule, ClrCheckboxModule } from '@clr/angular';
@@ -181,7 +181,6 @@ fdescribe('FormComponent', () => {
     expect(errors.length).toEqual(1);
   });
 
-  // NOVOS TESTES
   it('should validate the input data in the name field and add the error class "clr-error"', () => {
     let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('#input-name')).nativeElement;
     let errors = fixture.debugElement.queryAll(By.css('.clr-error'));
@@ -203,4 +202,42 @@ fdescribe('FormComponent', () => {
   });
 
   // implement email test and detail explanation
+
+  // NOVO TESTE
+  fit('should click on the save button and the name field is empty, apply the class "clr-error"', () => {
+    let errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(0);
+
+    let email: HTMLInputElement = fixture.debugElement.query(By.css('input[name=email]')).nativeElement;
+    let gender: HTMLInputElement = fixture.debugElement.query(By.css('input[type=radio]')).nativeElement;
+    let status: HTMLInputElement = fixture.debugElement.query(By.css('input[name=status]')).nativeElement;
+    let btn: HTMLButtonElement = fixture.debugElement.query(By.css('#btn-submit')).nativeElement;
+
+    email.value = 'any_email@email.com';
+    email.dispatchEvent(new Event('input'));
+
+    gender.value = GenderEnum.FEMININE;
+    gender.dispatchEvent(new Event('input'));
+
+    status.checked;
+    status.dispatchEvent(new Event('input'));
+
+    btn.click();
+    fixture.detectChanges();
+    
+    errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(1);
+
+    let name: HTMLInputElement = fixture.debugElement.query(By.css('input[name=name]')).nativeElement;
+    name.value = "Any Name";
+    name.dispatchEvent(new Event('input'));
+    btn.click();
+    fixture.detectChanges();
+
+    errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(0);
+  });
+
+  // implement email test and detail explanation
+  
 });

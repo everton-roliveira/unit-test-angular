@@ -4,7 +4,7 @@
         <div class="clr-control-container clr-col-sm-12 clr-col-md-5">
             <div class="clr-input-wrapper" 
             [ngClass]="{ 'clr-error': form.controls['name'].invalid && (form.controls['name'].touched || form.controls['name'].dirty) }">
-                <input type="text" id="input-name" class="clr-input" formControlName="name">
+                <input type="text" id="input-name" name="name" class="clr-input" formControlName="name">
                 <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             </div>
             <span class="clr-subtext">campo obrigatório</span>
@@ -16,7 +16,7 @@
         <div class="clr-control-container clr-col-sm-12 clr-col-md-5">
             <div class="clr-input-wrapper"
             [ngClass]="{ 'clr-error': form.controls['email'].invalid && (form.controls['email'].touched || form.controls['email'].dirty) }">
-                <input type="text" id="input-email" class="clr-input" formControlName="email">
+            <input type="text" id="input-email" name="email" class="clr-input" formControlName="email">
                 <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             </div>
             <span class="clr-subtext">campo obrigatório</span>
@@ -47,7 +47,7 @@
 
     <div class="clr-form-control clr-row">
         <div class="clr-col">
-            <button class="btn btn-primary" type="submit">Salvar</button>
+            <button class="btn btn-primary" type="submit" id="btn-submit">Salvar</button>
             <button class="btn btn-outline">Cancelar</button>
         </div>
     </div>
