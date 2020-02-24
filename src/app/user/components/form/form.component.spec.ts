@@ -5,6 +5,7 @@ import { ClrRadioModule, ClrIconModule, ClrInputModule, ClrCheckboxModule } from
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 import { GenderEnum } from 'src/app/shared/enum/gender.enum';
+import { By } from '@angular/platform-browser';
 
 const CLARITY_MODULES = [
   ClrRadioModule,
@@ -146,9 +147,38 @@ fdescribe('FormComponent', () => {
     expect(component.emitForm.emit).toHaveBeenCalled();
   });
 
-  // NOVO TESTE
+  // NOVOS TESTE
   it('should get GenderEnum', () => {
     expect(component.gender.FEMININE).toEqual(GenderEnum.FEMININE);
     expect(component.gender.MALE).toEqual(GenderEnum.MALE);
+  });
+
+  it('should no fields must contain a "clr-error" class', () => {
+    let errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(0);
+  });
+
+  it('after the field name is touched, it must contain the error class "clr-error"', () => {
+    let inputEl: HTMLInputElement = fixture.nativeElement.querySelector('#input-name');
+    let errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(0);
+
+    inputEl.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(1);
+  });
+
+  it('after the field email is touched, it must contain the error class "clr-error"', () => {
+    let inputEl: HTMLInputElement = fixture.nativeElement.querySelector('#input-email');
+    let errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(0);
+
+    inputEl.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(1);
   });
 });
