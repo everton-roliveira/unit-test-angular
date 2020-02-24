@@ -145,4 +145,10 @@ fdescribe('FormComponent', () => {
     component.validateForm();
     expect(component.emitForm.emit).toHaveBeenCalled();
   });
+
+  // NOVO TESTE
+  it('should get GenderEnum', () => {
+    expect(component.gender.FEMININE).toEqual(GenderEnum.FEMININE);
+    expect(component.gender.MALE).toEqual(GenderEnum.MALE);
+  });
 });
