@@ -56,8 +56,6 @@ export class FormComponent implements OnInit {
     });
   }
 
-    // Método que marca como tocado todos os campos do formGroup
-  // com isso se algum estiver inválido, o html coloca uma classe de error (clr-error)
   private markFormGroupTouched(formGroup: FormGroup) {
     (<any>Object).values(formGroup.controls).forEach(control => {
       control.markAsTouched();

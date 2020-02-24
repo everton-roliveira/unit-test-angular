@@ -22,6 +22,12 @@ const FORM_GROUP = [
 fdescribe('FormComponent', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
+  let user: User = {
+    name: 'Any Name',
+    email: 'any_email@email.com',
+    gender: GenderEnum.FEMININE,
+    status: true
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -49,14 +55,10 @@ fdescribe('FormComponent', () => {
   });
 
   it('should create formGroup with all fields', () => {
-    let user = new User();
-    user = {
-      name: null,
-      email: null,
-      gender: GenderEnum.FEMININE,
-      status: true
-    };
-    expect(component.form.value).toEqual(user);
+    expect(component.form.controls['name']).toBeTruthy();
+    expect(component.form.controls['email']).toBeTruthy();
+    expect(component.form.controls['gender']).toBeTruthy();
+    expect(component.form.controls['status']).toBeTruthy();
   });
 
   it('should form invalid when empty', () => {
@@ -116,13 +118,6 @@ fdescribe('FormComponent', () => {
   });
 
   it('should create the form with the value passed by input', () => {
-    let user = new User();
-    user = {
-      name: 'Name test',
-      email: 'any_email@email.com',
-      gender: GenderEnum.FEMININE,
-      status: true
-    }
     component.user = user;
     component.ngOnInit();
     expect(component.form.value).toEqual(user);
@@ -136,12 +131,6 @@ fdescribe('FormComponent', () => {
 
   it('emitForm must issue when validateForm () is called', () => {
     spyOn(component.emitForm, 'emit');
-    component.user = {
-      name: 'Teste name',
-      email: 'any_email@email.com',
-      gender: GenderEnum.FEMININE,
-      status: true
-    };
     component.ngOnInit();
     component.validateForm();
     expect(component.emitForm.emit).toHaveBeenCalled();
@@ -203,8 +192,7 @@ fdescribe('FormComponent', () => {
 
   // implement email test and detail explanation
 
-  // NOVO TESTE
-  fit('should click on the save button and the name field is empty, apply the class "clr-error"', () => {
+  it('should click on the save button and the name field is empty, apply the class "clr-error"', () => {
     let errors = fixture.debugElement.queryAll(By.css('.clr-error'));
     expect(errors.length).toEqual(0);
 
