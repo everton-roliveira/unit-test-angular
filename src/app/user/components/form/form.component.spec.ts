@@ -134,16 +134,14 @@ fdescribe('FormComponent', () => {
   });
 
   // NOVOS TESTES
-  fit('emitForm must issue when validateForm () is called', () => {
+  it('emitForm must issue when validateForm () is called', () => {
     spyOn(component.emitForm, 'emit');
-    let user = new User();
-    user = {
+    component.user = {
       name: 'Teste name',
       email: 'any_email@email.com',
       gender: GenderEnum.FEMININE,
       status: true
-    }
-    component.user = user;
+    };
     component.ngOnInit();
     component.validateForm();
     expect(component.emitForm.emit).toHaveBeenCalled();
