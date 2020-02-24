@@ -1,9 +1,10 @@
-<form class="clr-form">
+<form class="clr-form" [formGroup]="form" (ngSubmit)="validateForm()">
     <div class="clr-form-control clr-row">
         <label for="example" class="clr-control-label">Nome</label>
         <div class="clr-control-container clr-col-sm-12 clr-col-md-5">
-            <div class="clr-input-wrapper">
-                <input type="text" id="input-name" class="clr-input">
+            <div class="clr-input-wrapper" 
+            [ngClass]="{ 'clr-error': form.controls['name'].invalid && (form.controls['name'].touched || form.controls['name'].dirty) }">
+                <input type="text" id="input-name" class="clr-input" formControlName="name">
                 <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             </div>
             <span class="clr-subtext">campo obrigatório</span>
@@ -13,8 +14,9 @@
     <div class="clr-form-control clr-row">
         <label for="example" class="clr-control-label">Email</label>
         <div class="clr-control-container clr-col-sm-12 clr-col-md-5">
-            <div class="clr-input-wrapper">
-                <input type="text" id="input-email" class="clr-input">
+            <div class="clr-input-wrapper"
+            [ngClass]="{ 'clr-error': form.controls['email'].invalid && (form.controls['email'].touched || form.controls['email'].dirty) }">
+                <input type="text" id="input-email" class="clr-input" formControlName="email">
                 <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
             </div>
             <span class="clr-subtext">campo obrigatório</span>
@@ -25,11 +27,11 @@
         <clr-radio-container clrInline>
             <label class="clr-control-label">Genêro</label>
             <clr-radio-wrapper>
-                <input type="radio" clrRadio name="gender" required value="feminine" />
+                <input type="radio" clrRadio name="gender" [value]="GenderEnum.FEMININE" formControlName="gender"/>
                 <label>Feminino</label>
             </clr-radio-wrapper>
             <clr-radio-wrapper>
-                <input type="radio" clrRadio name="gender" required value="male" />
+                <input type="radio" clrRadio name="gender" [value]="GenderEnum.MALE" formControlName="gender"/>
                 <label>Masculino</label>
             </clr-radio-wrapper>
             <clr-control-error>campo obrigatório</clr-control-error>
@@ -38,14 +40,14 @@
 
     <div class="clr-form-control clr-row">
         <clr-toggle-wrapper>
-            <input type="checkbox" clrToggle value="option1" name="status" />
+            <input type="checkbox" clrToggle value="option1" name="status" formControlName="status" />
             <label>Status</label>
         </clr-toggle-wrapper>
     </div>
 
     <div class="clr-form-control clr-row">
         <div class="clr-col">
-            <button class="btn btn-primary">Salvar</button>
+            <button class="btn btn-primary" type="submit">Salvar</button>
             <button class="btn btn-outline">Cancelar</button>
         </div>
     </div>
