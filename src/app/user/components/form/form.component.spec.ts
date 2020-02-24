@@ -133,7 +133,6 @@ fdescribe('FormComponent', () => {
     expect(component.form.invalid).toBeTruthy();
   });
 
-  // NOVOS TESTES
   it('emitForm must issue when validateForm () is called', () => {
     spyOn(component.emitForm, 'emit');
     component.user = {
