@@ -147,7 +147,6 @@ fdescribe('FormComponent', () => {
     expect(component.emitForm.emit).toHaveBeenCalled();
   });
 
-  // NOVOS TESTE
   it('should get GenderEnum', () => {
     expect(component.gender.FEMININE).toEqual(GenderEnum.FEMININE);
     expect(component.gender.MALE).toEqual(GenderEnum.MALE);
@@ -181,4 +180,27 @@ fdescribe('FormComponent', () => {
     errors = fixture.debugElement.queryAll(By.css('.clr-error'));
     expect(errors.length).toEqual(1);
   });
+
+  // NOVOS TESTES
+  it('should validate the input data in the name field and add the error class "clr-error"', () => {
+    let inputEl: HTMLInputElement = fixture.debugElement.query(By.css('#input-name')).nativeElement;
+    let errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(0);
+
+    inputEl.value = '';
+    inputEl.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(1);
+
+    inputEl.value = 'Everton Roberto';
+    inputEl.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    errors = fixture.debugElement.queryAll(By.css('.clr-error'));
+    expect(errors.length).toEqual(0);
+  });
+
+  // implement email test and detail explanation
 });
