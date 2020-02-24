@@ -12,7 +12,9 @@ const EMAIL_PARTTERN = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 })
 export class FormComponent implements OnInit {
 
-  @Input() user: User = new User();
+  @Input() user = new User();
+  // propriedade que enviará o valor do form para o elemnto pai
+  @Output() emitForm = new EventEmitter<User>();
   form: FormGroup;
   
   constructor(
@@ -39,5 +41,10 @@ export class FormComponent implements OnInit {
       ],
       'status': [user.status]
     });
+  }
+
+  // método chamado pelo html
+  validateForm() {
+    this.emitForm.emit(this.form.valid ? this.form.value : null);
   }
 }
