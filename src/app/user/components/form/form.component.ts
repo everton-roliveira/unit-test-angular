@@ -25,8 +25,6 @@ export class FormComponent implements OnInit {
     this.createForm(this.user);
   }
 
-  // O escopo do modelo é limitado aos membros da instância do componente, 
-  // por isso preciso criar um get para o enum
   get gender() {
     return GenderEnum;
   }
