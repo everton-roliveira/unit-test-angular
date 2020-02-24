@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
 
   // O escopo do modelo é limitado aos membros da instância do componente, 
   // por isso preciso criar um get para o enum
-  get GenderEnum() {
+  get gender() {
     return GenderEnum;
   }
 
