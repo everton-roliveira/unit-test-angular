@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
   @Input() user = new User();
   @Output() emitForm = new EventEmitter<User>();
   form: FormGroup;
+  openModal = false; // variavel usada para abrir o modal
   
   constructor(
     private _fb: FormBuilder
@@ -36,6 +37,11 @@ export class FormComponent implements OnInit {
       this.markFormGroupTouched(this.form);
       this.emitForm.emit(null);
     }
+  }
+
+  // método susado para limpar o formulário
+  resetForm(){
+    this.createForm(this.user);
   }
 
   private createForm(user: User) {

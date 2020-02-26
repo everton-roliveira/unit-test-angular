@@ -1,17 +1,19 @@
-import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
-
-import { FormComponent } from './form.component';
-import { ClrRadioModule, ClrIconModule, ClrInputModule, ClrCheckboxModule } from '@clr/angular';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { User } from 'src/app/shared/models/user';
-import { GenderEnum } from 'src/app/shared/enum/gender.enum';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClrCheckboxModule, ClrIconModule, ClrInputModule, ClrModalModule, ClrRadioModule } from '@clr/angular';
+import { GenderEnum } from 'src/app/shared/enum/gender.enum';
+import { User } from 'src/app/shared/models/user';
+import { FormComponent } from './form.component';
+
 
 const CLARITY_MODULES = [
   ClrRadioModule,
   ClrIconModule,
   ClrInputModule,
-  ClrCheckboxModule
+  ClrCheckboxModule,
+  ClrModalModule // modulo de modal do framework
 ]
 
 const FORM_GROUP = [
@@ -34,7 +36,8 @@ fdescribe('FormComponent', () => {
       declarations: [FormComponent],
       imports: [
         CLARITY_MODULES,
-        FORM_GROUP
+        FORM_GROUP,
+        BrowserAnimationsModule // foi adicionado pois existe dependencias do framework
       ]
     })
       .compileComponents();
@@ -212,7 +215,7 @@ fdescribe('FormComponent', () => {
 
     btn.click();
     fixture.detectChanges();
-    
+
     errors = fixture.debugElement.queryAll(By.css('.clr-error'));
     expect(errors.length).toEqual(1);
 
@@ -227,5 +230,65 @@ fdescribe('FormComponent', () => {
   });
 
   // implement email test and detail explanation
-  
+
+
+  // NOVOS TESTES
+  it('when clicking on the "cancel" button, you should open the modal', () => {
+
+    component.user = user;
+    component.ngOnInit();
+
+    let modalEl = fixture.debugElement.query(By.css('.modal-dialog'));
+    expect(modalEl).toBeNull();
+
+    fixture.debugElement.query(By.css('#btn-cancel')).nativeElement.click();
+    fixture.detectChanges();
+
+    modalEl = fixture.debugElement.query(By.css('.modal-dialog')).nativeElement;
+    expect(modalEl).not.toBeNull();
+  });
+
+  it('should clicking the "no" button to cancel registration, close modal and not clear the form', () => {
+    component.user = new User();
+    component.ngOnInit();
+    fixture.autoDetectChanges();
+
+    let nameEl: HTMLInputElement = fixture.debugElement.query(By.css('input[name=name')).nativeElement;
+    nameEl.value = user.name;
+    nameEl.dispatchEvent(new Event('input'));
+    expect(nameEl.value).toEqual(user.name);
+    
+    fixture.debugElement.query(By.css('#btn-cancel')).nativeElement.click();
+    fixture.debugElement.query(By.css('#btn-modal-reset-form-no')).nativeElement.click();
+
+    let modalEl = fixture.debugElement.query(By.css('.modal-dialog'));
+    expect(modalEl).toBeNull();
+
+    nameEl = fixture.debugElement.query(By.css('input[name=name')).nativeElement;
+    expect(nameEl.value).toEqual(user.name);
+
+  });
+
+  fit('should clicking the "yes" button to cancel registration, close modal and clear the form', () => {
+    component.user = new User();
+    component.ngOnInit();
+    fixture.autoDetectChanges();
+
+    let nameEl: HTMLInputElement = fixture.debugElement.query(By.css('input[name=name')).nativeElement;
+    nameEl.value = user.name;
+    nameEl.dispatchEvent(new Event('input'));
+    expect(nameEl.value).toEqual(user.name);
+
+    fixture.debugElement.query(By.css('#btn-cancel')).nativeElement.click();
+    fixture.detectChanges();
+
+    fixture.debugElement.query(By.css('#btn-modal-reset-form-yes')).nativeElement.click();
+    fixture.detectChanges();
+
+    let modalEl = fixture.debugElement.query(By.css('.modal-dialog'));
+    expect(modalEl).toBeNull();
+
+    nameEl = fixture.debugElement.query(By.css('input[name=name')).nativeElement;
+    expect(nameEl.value).toEqual('');
+  });
 });

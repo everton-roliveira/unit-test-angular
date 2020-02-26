@@ -48,7 +48,19 @@
     <div class="clr-form-control clr-row">
         <div class="clr-col">
             <button class="btn btn-primary" type="submit" id="btn-submit">Salvar</button>
-            <button class="btn btn-outline">Cancelar</button>
+            <button class="btn btn-outline" type="button" id="btn-cancel" (click)="openModal = true">Cancelar</button>
         </div>
     </div>
 </form>
+
+<!-- modal de cancelar -->
+<clr-modal [(clrModalOpen)]="openModal" [clrModalSize]="sm">
+    <h3 class="modal-title">Cancelar</h3>
+    <div class="modal-body">
+        <p>Deseja cancelar o cadastro desse usuário?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="openModal = false" id="btn-modal-reset-form-no">Não</button>
+        <button type="button" class="btn btn-primary" (click)="resetForm(); openModal = false" id="btn-modal-reset-form-yes">Sim</button>
+    </div>
+</clr-modal>
