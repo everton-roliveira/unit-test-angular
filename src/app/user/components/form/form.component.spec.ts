@@ -269,7 +269,7 @@ fdescribe('FormComponent', () => {
 
   });
 
-  fit('should clicking the "yes" button to cancel registration, close modal and clear the form', () => {
+  it('should clicking the "yes" button to cancel registration, close modal and clear the form', () => {
     component.user = new User();
     component.ngOnInit();
     fixture.autoDetectChanges();
@@ -280,10 +280,7 @@ fdescribe('FormComponent', () => {
     expect(nameEl.value).toEqual(user.name);
 
     fixture.debugElement.query(By.css('#btn-cancel')).nativeElement.click();
-    fixture.detectChanges();
-
     fixture.debugElement.query(By.css('#btn-modal-reset-form-yes')).nativeElement.click();
-    fixture.detectChanges();
 
     let modalEl = fixture.debugElement.query(By.css('.modal-dialog'));
     expect(modalEl).toBeNull();
