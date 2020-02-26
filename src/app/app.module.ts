@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    // adicionado para funcionar a animação do modal
     BrowserAnimationsModule,
     AppRoutingModule,
     ClarityModule

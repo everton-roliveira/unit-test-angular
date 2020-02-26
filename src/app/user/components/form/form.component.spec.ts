@@ -231,8 +231,6 @@ fdescribe('FormComponent', () => {
 
   // implement email test and detail explanation
 
-
-  // NOVOS TESTES
   it('when clicking on the "cancel" button, you should open the modal', () => {
 
     component.user = user;
