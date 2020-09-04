@@ -288,20 +288,20 @@ fdescribe('FormComponent', () => {
   });
 
   // NOVO TESTE
-  fit('should click on the save button and the form invalid, emitForm.emit(null)', () => {
-    component.user = user;
-    component.ngOnInit();
-    fixture.autoDetectChanges();
+  // fit('should click on the save button and the form invalid, emitForm.emit(null)', () => {
+  //   component.user = user;
+  //   component.ngOnInit();
+  //   fixture.autoDetectChanges();
     
-    spyOn(component.emitForm, 'emit');
-    let emailEl: HTMLInputElement = fixture.debugElement.query(By.css('input[name=name]')).nativeElement;
-    emailEl.value = 'email_invalid';
-    emailEl.dispatchEvent(new Event('input'));
+  //   spyOn(component.emitForm, 'emit');
+  //   let emailEl: HTMLInputElement = fixture.debugElement.query(By.css('input[name=name]')).nativeElement;
+  //   emailEl.value = 'email_invalid';
+  //   emailEl.dispatchEvent(new Event('input'));
 
-    fixture.debugElement.query(By.css('#btn-submit')).nativeElement.click();
+  //   fixture.debugElement.query(By.css('#btn-submit')).nativeElement.click();
 
-    expect(component.emitForm.emit).toHaveBeenCalled();
-    expect(component.emitForm.emit).toHaveBeenCalledWith(null);
-  });
+  //   expect(component.emitForm.emit).toHaveBeenCalled();
+  //   expect(component.emitForm.emit).toHaveBeenCalledWith(null);
+  // });
 
 });
